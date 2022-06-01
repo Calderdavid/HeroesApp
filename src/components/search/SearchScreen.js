@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { getHeroesByName } from '../../selectors/getHeroesByName';
 import { useForm } from '../hooks/useForm'
 import HeroCard from '../hero/HeroCard'
@@ -12,16 +12,13 @@ const SearchScreen = () => {
 
   const {q = ''} = queryString.parse(location.search);
 
-  console.log(q)
-
   const [formValues, handleInputChange] = useForm({
     searchText: q,
   })
 
-  
-
   const { searchText } = formValues;
-  const heroesFiltered = getHeroesByName(q);
+  
+  const heroesFiltered = useMemo(() => getHeroesByName(q), [q]);
   
   const handleSearch = (e) => {
     e.preventDefault();
@@ -46,7 +43,7 @@ const SearchScreen = () => {
               className='form-control'
               name='search'
               autoComplete='off'
-              value={handleInputChange}
+              value={searchText}
               onChange={handleInputChange}
               />
 

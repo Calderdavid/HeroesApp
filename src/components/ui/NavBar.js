@@ -5,7 +5,7 @@ const Navbar = () => {
 
     const navigate = useNavigate();
 
-    const handleLogOut = () => {
+    const handleLogout = () => {
         navigate('/login',{
             replace: true
         })
@@ -28,7 +28,6 @@ const Navbar = () => {
 
                     <NavLink 
                         className={ ({isActive}) => 'nav-item nav-link ' + (isActive ? 'active' : '')}
-                        exact
                         to="/marvel"
                     >
                         Marvel
@@ -56,7 +55,7 @@ const Navbar = () => {
 
                     <button
                         className="nav-item nav-link btn" 
-                        onClick={handleLogOut}
+                        onClick={handleLogout}
                     >
                         Logout
                     </button>
