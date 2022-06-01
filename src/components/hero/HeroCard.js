@@ -1,16 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-    const HeroCard = ({
-        id,
-        superhero,
-        publisher,
-        alter_ego,
-        first_appearance,
-        characters
-    }) => {
+const HeroCard = ({
+    id,
+    superhero,
+    publisher,
+    alter_ego,
+    first_appearance,
+    characters
+}) => {
 
-    const imagePath = `../../assets/${id}.jpg`;
+    const imagePath = `/assets/${id}.jpg`;
     
     return (
         <div className='col animate__animated animate_fadeIn'>
@@ -25,8 +25,8 @@ import { Link } from 'react-router-dom'
                         <p className="card-text">{alter_ego}</p>
 
                         {
-                            ( alter_ego !== characters ) && 
-                            <p className="text-muted">{characters}</p>
+                            ( alter_ego !== characters ) 
+                            && <p className="text-muted">{characters}</p>
                         }
 
                         <p className='card-text'>

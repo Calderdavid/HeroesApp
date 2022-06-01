@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 
-export const useForm = ( initialState = {} ) => {
+const useForm = ( initialState = {} ) => {
     
     const [values, setValues] = useState(initialState);
 
@@ -21,3 +21,5 @@ export const useForm = ( initialState = {} ) => {
     //retorna un objeto con los valores del formulario y una funcion para resetear el formulario 
     return [ values, handleInputChange, reset ];
 }
+
+export default useForm;

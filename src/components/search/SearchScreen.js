@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { getHeroesByName } from '../../selectors/getHeroesByName';
-import { useForm } from '../hooks/useForm'
+import useForm from '../hooks/useForm'
 import HeroCard from '../hero/HeroCard'
 import { useNavigate, useLocation } from 'react-router-dom';
 import queryString from 'query-string';
@@ -41,7 +41,7 @@ const SearchScreen = () => {
               type="text"
               placeholder='Buscar un heroe'
               className='form-control'
-              name='search'
+              name='searchText'
               autoComplete='off'
               value={searchText}
               onChange={handleInputChange}
