@@ -1,20 +1,31 @@
 import React from 'react'
 import { getHeroesByName } from '../../selectors/getHeroesByName';
 import { useForm } from '../hooks/useForm'
-import { HeroCard } from '../hero/HeroCard'
+import HeroCard from '../hero/HeroCard'
+import { useNavigate, useLocation } from 'react-router-dom';
+import queryString from 'query-string';
 
 const SearchScreen = () => {
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const {q = ''} = queryString.parse(location.search);
+
+  console.log(q)
+
   const [formValues, handleInputChange] = useForm({
-    search: '',
+    searchText: q,
   })
 
+  
+
   const { searchText } = formValues;
-  const heroesFiltered = getHeroesByName('Algo por awui');
+  const heroesFiltered = getHeroesByName(q);
   
   const handleSearch = (e) => {
     e.preventDefault();
-
+    navigate(`?q=${searchText}`);
 
   }
 
@@ -35,7 +46,7 @@ const SearchScreen = () => {
               className='form-control'
               name='search'
               autoComplete='off'
-              value={searchText}
+              value={handleInputChange}
               onChange={handleInputChange}
               />
 
@@ -49,17 +60,24 @@ const SearchScreen = () => {
           </div>
 
           <div className="col-7">
-            <h4>Resultado</h4>
-            <hr />
+              <h4>Resultado</h4>
+              <hr />
 
-            {
-              heroesFiltered.map(hero => (
-                <HeroCard 
-                key={hero.id}
-                {...hero}
-                />
-              ))
-            }
+              {
+                (q === '')
+                  ? <div className="alert alert-info">Buscar un héroe</div>
+                  : (heroesFiltered === 0)
+                    && <div className="alert alert-danger">No hay resultados: {q}</div> 
+              }
+
+              {
+                heroesFiltered.map(hero => (
+                  <HeroCard 
+                    key={hero.id}
+                    {...hero}
+                  />
+                ))
+              }
           </div>
 
         </div>
