@@ -11,20 +11,20 @@ const AppRouter = () => {
     <BrowserRouter>
         <Routes>
             <Route path="/login" element={
-              <PublicRoute>
-                <LoginScreen/>
-              </PublicRoute>
-            } />
+                <PublicRoute>
+                  <LoginScreen/>
+                </PublicRoute>
+            } 
+            />
 
-            <Route path="/*" elemen={
+            <Route path="/*" element={
               //PrivateRoute verify if the user is logged in
-              <PrivateRoute>
-                  <DashboardRoutes/>
-              </PrivateRoute>
+                <PrivateRoute>
+                    <DashboardRoutes/>
+                </PrivateRoute>
               }
             />
-            <Route path="/*" element={<DashboardRoutes/>}/>
-
+            {/* <Route path="/*" element={<DashboardRoutes/>}/> */}
         </Routes>
     </BrowserRouter>
   )

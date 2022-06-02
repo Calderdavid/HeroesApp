@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useLocation } from 'react-router-dom'
 import { AuthContext } from '../auth/authContext'
 
 //AppRouter is defined all of children routes
@@ -8,6 +8,9 @@ import { AuthContext } from '../auth/authContext'
 export const PrivateRoute = ({children}) => {
 
     const {user} = useContext(AuthContext)
+    const { pathname, search } = useLocation();
+
+    localStorage.setItem('lastpath', pathname + search);
 
     
 
